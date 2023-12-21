@@ -6,7 +6,7 @@
 /*   By: npremont <npremont@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:25:28 by npremont          #+#    #+#             */
-/*   Updated: 2023/12/21 16:07:17 by npremont         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:33:35 by npremont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_screen_init(t_vars *vars)
 	else 
 	{
 		ft_free_map(vars->map);
-		ft_printf("Erreur d'image\n");
+		write(2, "Erreur d'image\n", 16);
 		exit(1);
 	}
 }
@@ -73,7 +73,7 @@ int	main(int ac, char *av[])
 	t_vars	*vars;
 
 	if (ac != 2)
-		return (ft_printf("Erreur : Le programme prend 1 argument\n"), 0);
+		return (ft_printf("Le programme prend 1 argument.\n"), 0);
 	vars = malloc(sizeof(t_vars));
 	if (!vars)
 		return (perror("Malloc error:"), 1);
@@ -85,7 +85,7 @@ int	main(int ac, char *av[])
 	vars->plan = ft_get_dim(vars->map);
 	if (vars->plan.points == NULL)
 	{
-		ft_printf("Erreur d'allocation\n");
+		write(2, "Erreur d'allocation\n", 21);
 		return (ft_free_map(vars->map), free(vars), 1);
 	}
 	ft_screen_init(vars);
