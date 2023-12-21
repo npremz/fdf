@@ -1,6 +1,6 @@
 NAME = fdf
 
-HEADER = fdf.h
+HEADER = .
 
 SOURCES = display.c map_parsing.c img_utils.c math_utils.c points_utils.c angle_utils.c free_utils.c
 
@@ -8,7 +8,7 @@ OBJECTS = $(SOURCES:.c=.o)
 
 LIB = libft.a
 
-GCC_FLAGS = -Wall -Wextra -Werror -g -O3 -flto -ffast-math -march=native
+GCC_FLAGS = -Wall -Wextra -Werror -O3 -flto -ffast-math -march=native -g
 
 CC = cc
 
@@ -27,7 +27,7 @@ $(NAME): $(OBJECTS) $(LIB)
 	@echo "\033[0m"
 	@make usage
 
-$(OBJECTS): $(SOURCES) $(HEADER)
+%.o: %.c $(HEADER)
 	@$(CC) $(GCC_FLAGS) -c -Imlx -I $(HEADER) ${@:.o=.c} -o $@
 
 $(LIB):

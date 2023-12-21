@@ -6,7 +6,7 @@
 /*   By: npremont <npremont@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:25:28 by npremont          #+#    #+#             */
-/*   Updated: 2023/11/21 17:32:27 by npremont         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:07:17 by npremont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ void	ft_putproj(double *point, t_dim plan, t_vars *data, int color)
 	double	x_proj;
 	double	y_proj;
 
-	(void)plan;
 	x_proj = (point[0] - point[1]) / sqrt(2) + plan.width;
-	y_proj = (point[0] + 2 * point[1] + point[2]) / sqrt(6) + plan.height * 0.3;
+	y_proj = (point[0] + 2 * point[1] + point[2]) / sqrt(6) + 10;
 	if (point[3] != 0)
 		color = point[3];
 	ft_mlx_pixel_put(data, x_proj, y_proj, color);
@@ -49,10 +48,8 @@ void	ft_screen_init(t_vars *vars)
 	vars->mlx = mlx_init();
 	if (vars->mlx)
 	{
-		vars->win = mlx_new_window(vars->mlx, vars->plan.width * 2,
-				vars->plan.height * 2, "FdF");
-		vars->img.img = mlx_new_image(vars->mlx, vars->plan.width * 2,
-				vars->plan.height * 2);
+		vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "FdF");
+		vars->img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 		vars->img.addr = mlx_get_data_addr(vars->img.img,
 				&vars->img.bits_per_pixel,
 				&vars->img.line_length, &vars->img.endian);

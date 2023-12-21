@@ -6,7 +6,7 @@
 /*   By: npremont <npremont@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:41:07 by npremont          #+#    #+#             */
-/*   Updated: 2023/12/04 11:45:34 by npremont         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:13:08 by npremont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 
 /* CONSTANTES */
 
-#define STANCE 10
+#define STANCE 50
+#define HEIGHT 1440
+#define WIDTH 2560
 
 /* STRUCTURES */
 
@@ -36,6 +38,7 @@ typedef struct s_data {
 typedef struct s_dim {
 	int		width;
 	int		height;
+	int		stance;
 	int		depth;
 	t_list	*points;
 }				t_dim;
