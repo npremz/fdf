@@ -6,7 +6,7 @@
 /*   By: npremont <npremont@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:41:07 by npremont          #+#    #+#             */
-/*   Updated: 2023/12/21 16:13:08 by npremont         ###   ########.fr       */
+/*   Updated: 2023/12/27 12:10:32 by npremont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ void	ft_h_angle_b(double *point, double *des_point, t_dim plan,
 			t_vars *data);
 void	ft_free(void *ptr);
 void	ft_free_split(char **split);
-void	ft_free_ds(char ***split, size_t og_i);
+void	ft_free_ds(char ***split);
 void	ft_free_map(char ***map);
 void	ft_free_struc(t_vars *vars);
-int		ft_checkmap(char ***map);
 int		ft_on_close(t_vars *vars);

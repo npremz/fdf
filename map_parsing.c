@@ -6,23 +6,21 @@
 /*   By: npremont <npremont@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:36:36 by npremont          #+#    #+#             */
-/*   Updated: 2023/11/22 12:41:45 by npremont         ###   ########.fr       */
+/*   Updated: 2023/12/27 14:03:26 by npremont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static char	*ft_getfile(int fd, int *size)
+static t_list	*ft_getfile(int fd)
 {
 	char	*line;
-	char	*file;
+	t_list	*node;
+	t_list	*file;
 
 	if (fd < 0)
 		return (NULL);
-	file = calloc(1, sizeof(char));
-	if (!file)
-		return (NULL);
-	*size = 0;
+	file = NULL;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -30,39 +28,39 @@ static char	*ft_getfile(int fd, int *size)
 			break ;
 		if (line[0] != '\n')
 		{
-			++*size;
-			file = ft_strjoin(file, line);
+			node = ft_lstnew(line);
+			if (!node)
+				return (ft_lstclear(&file, free), NULL);
+			ft_lstadd_back(&file, node);
 		}
-		free(line);
 	}
 	return (file);
 }
 
 char	***ft_map_parsing(int fd)
 {
-	char	*file;
+	t_list	*file;
+	t_list	*head;
 	char	***res;
-	char	**tmp;
 	int		i;
-	int		oi;
 
-	file = ft_getfile(fd, &i);
+	file = ft_getfile(fd);
 	if (!file)
 		return (NULL);
-	tmp = ft_split(file, '\n');
-	if (!tmp)
-		return (free(file), NULL);
-	res = malloc((i + 1) * (sizeof(char ***)));
+	res = malloc((ft_lstsize(file) + 1) * (sizeof(char ***)));
 	if (!res)
-		return (ft_free_split(tmp), free(file), NULL);
-	oi = i - 1;
-	res[i] = 0;
-	while (i-- > 0)
+		return (ft_lstclear(&file, free), NULL);
+	i = 0;
+	head = file;
+	while (file)
 	{
-		res[i] = ft_split(tmp[i], ' ');
+		res[i] = ft_split((char *)file->content, ' ');
 		if (!res[i])
-			return (ft_free_ds(res, oi), ft_free_split(tmp), free(file), NULL);
+			return (ft_free_ds(res), ft_lstclear(&file, free), NULL);
+		++i;
+		file = file->next;
 	}
-	ft_free_split(tmp);
-	return (free(file), res);
+	res[i] = 0;
+	ft_lstclear(&head, free);
+	return (res);
 }

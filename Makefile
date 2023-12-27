@@ -27,7 +27,7 @@ $(NAME): $(OBJECTS) $(LIB)
 	@echo "\033[0m"
 	@make usage
 
-%.o: %.c $(HEADER)
+%.o: %.c
 	@$(CC) $(GCC_FLAGS) -c -Imlx -I $(HEADER) ${@:.o=.c} -o $@
 
 $(LIB):

@@ -6,7 +6,7 @@
 /*   By: npremont <npremont@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:22:40 by npremont          #+#    #+#             */
-/*   Updated: 2023/12/21 15:53:28 by npremont         ###   ########.fr       */
+/*   Updated: 2023/12/27 13:58:34 by npremont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ void	ft_close(int keycode, t_vars *vars)
 		ft_free_struc(vars);
 	}
 	else
-	{
 		ft_free_struc(vars);
-		free(vars);
-	}
+	system("leaks fdf");
 	exit(0);
 }
 

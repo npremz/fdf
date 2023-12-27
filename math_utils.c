@@ -6,7 +6,7 @@
 /*   By: npremont <npremont@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:31:04 by npremont          #+#    #+#             */
-/*   Updated: 2023/12/21 16:23:54 by npremont         ###   ########.fr       */
+/*   Updated: 2023/12/27 13:38:40 by npremont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,22 @@ double	*ft_init_point(int x, int y, char *z, int stance)
 	return (point);
 }
 
+void	ft_add_point_to_back(t_list **points, t_list *node)
+{
+	static t_list	*last;
+
+	if (*points)
+	{
+		last->next = node;
+		last = node;
+	}
+	else
+	{
+		*points = node;
+		last = node;
+	}
+}
+
 t_list	*ft_getpoints(char ***map, int stance)
 {
 	int		i;
@@ -72,7 +88,7 @@ t_list	*ft_getpoints(char ***map, int stance)
 			point = ft_init_point(i, j, map[j][i], stance);
 			if (!point)
 				return (ft_lstclear(&points, &ft_free), NULL);
-			ft_lstadd_back(&points, ft_lstnew(point));
+			ft_add_point_to_back(&points, ft_lstnew(point));
 			++i;
 		}
 		++j;

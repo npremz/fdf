@@ -22,6 +22,7 @@ HEADER = libft.h
 
 GCC_FLAGS = -Wall -Wextra -Werror -g
 
+
 all: $(NAME)
 	@echo "\033[0;32m"
 	@echo " _     ___ ____     ____ ___  __  __ ____ ___ _     _____ ____  "

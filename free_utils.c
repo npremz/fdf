@@ -6,7 +6,7 @@
 /*   By: npremont <npremont@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:02:51 by npremont          #+#    #+#             */
-/*   Updated: 2023/11/20 14:52:07 by npremont         ###   ########.fr       */
+/*   Updated: 2023/12/27 12:09:38 by npremont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,17 @@ void	ft_free_split(char **split)
 	free(split);
 }
 
-void	ft_free_ds(char ***split, size_t og_i)
+void	ft_free_ds(char ***split)
 {
+	size_t	i;
+
+	i = 0;
 	if (!split)
 		return ;
-	while (split[og_i] != 0)
+	while (split[i] != 0)
 	{
-		ft_free_split(split[og_i]);
-		--og_i;
+		ft_free_split(split[i]);
+		++i;
 	}
 	free(split);
 }
